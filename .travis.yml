@@ -7,4 +7,4 @@ before_install:
 
 script:
   # Bydefault Test doesn't exit. Addon to automatically exit
-  - docker run haitran99/react npm run test -- --coverage
+  - docker run -e CI=true haitran99/react npm run test
