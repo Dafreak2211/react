@@ -1,0 +1,26 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # /app/node_modules means do not reference to the outer side since node_modules doesn't exists in the local machine
+      - /app/node_modules
+      - .:/app
+      # prevent exit(0)
+    stdin_open: true
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      # /app/node_modules means do not reference to the outer side since node_modules doesn't exists in the local machine
+      - /app/node_modules
+      - .:/app
+    command:
+      ["npm", "run", "test"]
+      # prevent exit(0)
+    stdin_open: true
