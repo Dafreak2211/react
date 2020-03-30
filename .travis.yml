@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t haitran99/react -f Dockerfile.dev .
+
+script:
+  # Bydefault Test doesn't exit. Addon to automatically exit
+  - docker run haitran99/react npm run test -- --coverage
